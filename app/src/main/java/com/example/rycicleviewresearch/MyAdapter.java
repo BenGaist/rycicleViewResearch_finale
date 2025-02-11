@@ -17,14 +17,13 @@ import java.util.List;
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder>
 {
 
-    private List<String> dataList;
+    private List<DataItem> dataList;
     private Context context;
-    @NonNull
-    @Override
-    public MyAdapter(List<String> dataList,Context context)
+
+    public MyAdapter(List<DataItem> dataList,Context context)
     {
         this.context = context;
-        this.
+        this.dataList = dataList;
     }
 
 
@@ -37,7 +36,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder>
 
     @Override
     public void onBindViewHolder(@NonNull MyAdapter.ViewHolder holder, int position) {
-        holder.editText.setText("");
         holder.button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -50,7 +48,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder>
 
     @Override
     public int getItemCount() {
-        return 0;
+        return dataList.size();
     }
 
 

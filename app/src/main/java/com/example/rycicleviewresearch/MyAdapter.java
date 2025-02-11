@@ -36,6 +36,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder>
 
     @Override
     public void onBindViewHolder(@NonNull MyAdapter.ViewHolder holder, int position) {
+        
         holder.button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

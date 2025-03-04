@@ -1,5 +1,6 @@
 package com.example.rycicleviewresearch;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -35,17 +36,30 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder>
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull MyAdapter.ViewHolder holder, @SuppressLint("RecyclerView") int position) {
         
         holder.button.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void  onClick(View v) {
                 String text = holder.editText.getText().toString();
                 Toast.makeText(v.getContext(), text, Toast.LENGTH_SHORT).show();
             }
         });
+        holder.itemView.setOnLongClickListener(new View.OnLongClickListener(){
+            public boolean onLongClick (View v){
+                int pos = holder.getAdapterPosition();
+                removeDataFromList(pos);
+                notifyItemRangeRemoved(pos,getItemCount());
+                return true;
+            }
+        });
 
     }
+
+    private void removeDataFromList(int pos){
+        dataList.remove(pos);
+    }
+
 
     @Override
     public int getItemCount() {
